@@ -8,6 +8,7 @@ Allows sending notifications to various channels i.e.
 
 This Behat extension integrates with:
 - [Behat Teams Notifier](https://github.com/marcelovani/behat-teams-notifier)
+- [Behat Email Notifier](https://github.com/marcelovani/behat-email-notifier)
 
 
 Installation
