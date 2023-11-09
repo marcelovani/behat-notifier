@@ -30,6 +30,7 @@ The configuration goes in the `Marcelovani\Behat\Notifier` extension, under `not
 default:
   extensions:
     Marcelovani\Behat\Notifier:
+      # See https://github.com/marcelovani/behat-screenshot
       screenshotExtension: Bex\Behat\ScreenshotExtension
       notifiers:
         # See https://github.com/marcelovani/behat-email-notifier
@@ -41,6 +42,11 @@ default:
         Marcelovani\Behat\Notifier\Teams\TeamsNotifier:
           webhook: 'https://www.foo.bar'
 ```
+Available options
+-----------------
+
+- `notifiers`: The list of classes that can listen to Behat Notifier events
+- `screenshotExtension` _(optional)_: The name of the extension to be used to take screenshots.
 
 Todo
 -------------
