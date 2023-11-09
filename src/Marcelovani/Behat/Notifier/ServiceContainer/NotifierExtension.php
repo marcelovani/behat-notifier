@@ -66,6 +66,22 @@ final class NotifierExtension implements Extension
         $extensionConfig->loadServices($container);
         $container->set(Config::CONFIG_CONTAINER_ID, $extensionConfig);
 
+        if (!empty($config['screenshotExtension'])) {
+            // Add Screenshot service class to the constructor of NotifyEventListener.
+            $tags = $container->findTaggedServiceIds('screenshot.service');
+            foreach (array_keys($tags) as $id) {
+                // Check if the container has the definitions for the service.
+                if ($container->hasDefinition($id)) {
+                    $service = $container->get($id);
+                    // Check if the configuration for the screenshot extension matches the namespace of the service.
+                    if (strpos(get_class($service), $config['screenshotExtension']) !== false) {
+                        $definition = $container->getDefinition('behat_notifier.failed_scenario_listener');
+                        $definition->addArgument($service);
+                        break;
+                    }
+                }
+            }
+        }
 
         // Adds the list of notifier classes to the constructor.
         $notifiers = [];
