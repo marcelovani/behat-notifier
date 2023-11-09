@@ -1,0 +1,13 @@
+<?xml version="1.0" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <services>
+        <service id="behat_notifier.extension.config" class="Marcelovani\Behat\Notifier\ServiceContainer\Config" public="false" />
+
+        <service id="behat_notifier.failed_scenario_listener" class="Marcelovani\Behat\Notifier\Listener\NotifyEventListener" public="false">
+            <tag name="event_dispatcher.subscriber" priority="0"/>
+            <argument type="service" id="behat_notifier.extension.config" />
+        </service>
+    </services>
+</container>
