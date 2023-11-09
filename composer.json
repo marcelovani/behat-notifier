@@ -1,0 +1,41 @@
+{
+    "name": "marcelovani/behat-teams-notifier",
+    "version": "1.0.0",
+    "type": "library",
+    "description": "Generic Behat extension to send notifications",
+    "keywords": [
+        "tdd",
+        "bdd",
+        "behat",
+        "MS",
+        "Microsoft",
+        "Teams",
+        "Notifications",
+        "Messages"
+    ],
+    "homepage": "https://github.com/marcelovani/behat-teams",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Marcelo Vani",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.5",
+        "behat/behat": "^3.0.0",
+        "friends-of-behat/mink-extension": "^2",
+        "symfony/filesystem": "^2.7|^3.0|^4.0|^5.0",
+        "symfony/finder": "^2.7|^3.0|^4.0|^5.0"
+    },
+    "require-dev": {
+    },
+    "config": {
+        "bin-dir": "bin"
+    },
+    "autoload": {
+        "psr-0": {
+            "Marcelovani\\Behat\\Notifier\\": "src"
+        }
+    }
+}
