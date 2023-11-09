@@ -1,5 +1,5 @@
 {
-    "name": "marcelovani/behat-teams-notifier",
+    "name": "marcelovani/behat-notifier",
     "version": "1.0.0",
     "type": "library",
     "description": "Generic Behat extension to send notifications",
@@ -13,7 +13,7 @@
         "Notifications",
         "Messages"
     ],
-    "homepage": "https://github.com/marcelovani/behat-teams",
+    "homepage": "https://github.com/marcelovani/behat-notifier",
     "license": "MIT",
     "authors": [
         {
