@@ -6,6 +6,7 @@ use Behat\Behat\EventDispatcher\Event as BehatEvent;
 use Behat\Testwork\EventDispatcher\Event as TestworkEvent;
 use Marcelovani\Behat\Notifier\ServiceContainer\Config;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+use Behat\Behat\Tester\Result;
 
 /**
  * This class is responsible listen to Behat events and forward it to the notifier classes.
@@ -26,6 +27,11 @@ class NotifyEventListener implements EventSubscriberInterface
      * List of notifiers.
      */
     private $notifiers;
+
+    /**
+     * Stores error messages.
+     */
+    private $error_message;
 
     /**
      * @param Config $config
@@ -120,6 +126,7 @@ class NotifyEventListener implements EventSubscriberInterface
         $details = [
             'eventId' => __FUNCTION__,
             'event' => $event,
+            'error_message' => $this->error_message,
             'screenshotService' => $this->screenshotService,
         ];
 
@@ -155,7 +162,15 @@ class NotifyEventListener implements EventSubscriberInterface
      */
     public function onAfterStepTested(BehatEvent\StepTested $event)
     {
-
+        $event_result = $event->getTestResult();
+        if (is_a($event_result, Result\ExecutedStepResult::class)) {
+            /** @var Result\ExecutedStepResult $result */
+            $result = $event_result;
+            $exception = $result->getException();
+            if ($exception) {
+                $this->error_message = $exception->getMessage();
+            }
+        }
     }
 
     /**
